@@ -23,12 +23,13 @@ enum layers {
     _VIA3
 };
 
+#define MAX_LEN_LINE 6
+
 // storing this in program (flash) memory instead of volitile memory
 const char layer_name[][MAX_LEN_LINE] = {
     "Base\n",
     "Envir",
-    "Mcro1",
-    "Mcro2"
+    "Mcro1"
 };
 
 #include "oled_management.h"
