@@ -19,18 +19,10 @@
 enum layers {
     _BASE = 0,
     _VIA1,
-    _VIA2,
-    _VIA3
+    _VIA2
 };
 
 #define MAX_LEN_LINE 6
-
-// storing this in program (flash) memory instead of volitile memory
-const char layer_name[][MAX_LEN_LINE] = {
-    "Base\n",
-    "Envir",
-    "Mcro1"
-};
 
 #include "oled_management.h"
 
@@ -57,13 +49,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ___, ___, ___, ___, ___, ___,
     ___, ___, ___, ___, ___, ___,
     ___, ___, ___, ___, ___, ___
-    ),
-
-    [_VIA3] = LAYOUT(
-                    ___, ___, ___,
-    ___, ___, ___, ___, ___, ___,
-    ___, ___, ___, ___, ___, ___,
-    ___, ___, ___, ___, ___, ___,
-    ___, ___, ___, ___, ___, ___
-    ),
+    )
 };
