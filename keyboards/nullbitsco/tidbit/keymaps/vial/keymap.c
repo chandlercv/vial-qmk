@@ -26,6 +26,41 @@ enum layers {
 
 #include "oled_management.h"
 
+const rgblight_segment_t PROGMEM l_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 7, 2, 158, 255}
+);
+
+const rgblight_segment_t PROGMEM l_envir_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 7, HSV_PURPLE}
+);
+
+const rgblight_segment_t PROGMEM l_mcro1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 7, HSV_GREEN}
+);
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    l_base_layer,
+    l_envir_layer,
+    l_mcro1_layer
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _VIA1));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _VIA2));
+    return state;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
                             KC_PSLS, KC_PAST, KC_PMNS,
