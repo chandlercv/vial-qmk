@@ -30,7 +30,7 @@ const encodermap_t encoder_map[4][2] = {
     {{4, 0}, {4, 1}},  // Encoder 4 matrix location
 };
 
-bool numlock_set = false;
+bool numlock_set = true;
 
 static void process_encoder_matrix(encodermap_t pos) {
     action_exec((keyevent_t){
