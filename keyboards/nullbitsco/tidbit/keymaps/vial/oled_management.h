@@ -11,7 +11,7 @@ bool oled_task_user(void) {
     oled_set_cursor(0,0);
 
     oled_write_ln("Base", IS_LAYER_ON(_BASE));
-    oled_write_ln("Evnir", IS_LAYER_ON(_VIA1));
+    oled_write_ln("Envr", IS_LAYER_ON(_VIA1));
     oled_write_ln("Mcro1", IS_LAYER_ON(_VIA2));
     oled_write_ln("", false);
 

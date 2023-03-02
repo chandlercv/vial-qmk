@@ -27,15 +27,24 @@ enum layers {
 #include "oled_management.h"
 
 const rgblight_segment_t PROGMEM l_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, 2, 158, 255}
+    {0, 1, 2, 158, 255},
+    {1, 1, 0, 0, 0},
+    {2, 5, 1, 158, 255},
+    {7, 1, 0, 0, 0}
 );
 
 const rgblight_segment_t PROGMEM l_envir_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, HSV_PURPLE}
+    {0, 1, HSV_PURPLE},
+    {1, 1, 0, 0, 0},
+    {2, 5, HSV_PURPLE},
+    {7, 1, 0, 0, 0}
 );
 
 const rgblight_segment_t PROGMEM l_mcro1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, HSV_GREEN}
+    {0, 1, HSV_GREEN},
+    {1, 1, 0, 0, 0},
+    {2, 5, HSV_GREEN},
+    {7, 1, 0, 0, 0}
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -50,7 +59,7 @@ void keyboard_post_init_user(void) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
+    rgblight_set_layer_state(0, true);
     return state;
 }
 
@@ -63,17 +72,17 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-                            KC_PSLS, KC_PAST, KC_PMNS,
-    KC_VOLD, KC_VOLU, KC_P7, KC_P8,   KC_P9,   KC_PPLS,
-    KC_TRNS, KC_TRNS, KC_P4, KC_P5,   KC_P6,   KC_PPLS,
-    KC_TRNS, KC_TRNS, KC_P1, KC_P2,   KC_P3,   KC_PENT,
-    KC_TRNS, KC_TRNS, KC_P0, KC_P0,   KC_PDOT, KC_PENT
+                                    KC_NUM,  KC_PSLS, KC_PAST,
+    TO(2), TO(1),     KC_P7,        KC_P8,   KC_P9,   KC_PMNS,
+    KC_TRNS, KC_TRNS, KC_P4,        KC_P5,   KC_P6,   KC_PPLS,
+    KC_TRNS, KC_TRNS, KC_P1,        KC_P2,   KC_P3,   KC_PENT,
+    KC_TRNS, KC_TRNS, LSFT(KC_SCLN),KC_P0,   KC_PDOT, KC_PENT
     ),
 
     [_VIA1] = LAYOUT(
-                    ___, ___, ___,
-    ___, ___, ___, ___, ___, ___,
-    ___, ___, ___, ___, ___, ___,
+                            ___,    LCA(KC_PSLS),   LCA(KC_PAST),
+    TO(0), TO(2),   TD(3),  ___,    ___,            TD(2),
+    ___, ___, ___,  ___, ___, ___,
     ___, ___, ___, ___, ___, ___,
     ___, ___, ___, ___, ___, ___
     ),

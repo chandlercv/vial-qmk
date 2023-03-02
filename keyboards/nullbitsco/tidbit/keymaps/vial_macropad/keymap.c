@@ -29,22 +29,42 @@ enum layers {
 #include "oled_management.h"
 
 const rgblight_segment_t PROGMEM l_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, 2, 158, 255}
+    {0, 1, 2, 158, 255},
+    {1, 1, 0, 0, 0},
+    {2, 1, 1, 158, 255},
+    {3, 1, 0, 0, 0},
+    {4, 4, 1, 158, 255}
 );
 
 const rgblight_segment_t PROGMEM l_find_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, HSV_BLUE}
+    {0, 1, HSV_BLUE},
+    {1, 1, 0, 0, 0},
+    {2, 1, HSV_BLUE},
+    {3, 1, 0, 0, 0},
+    {4, 4, HSV_BLUE}
 );
 
 const rgblight_segment_t PROGMEM l_excel_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, HSV_CORAL}
+    {0, 1, HSV_CORAL},
+    {1, 1, 0, 0, 0},
+    {2, 1, HSV_CORAL},
+    {3, 1, 0, 0, 0},
+    {4, 4, HSV_CORAL}
 );
 
 const rgblight_segment_t PROGMEM l_git_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, HSV_GREEN}
+    {0, 1, HSV_GREEN},
+    {1, 1, 0, 0, 0},
+    {2, 1, HSV_GREEN},
+    {3, 1, 0, 0, 0},
+    {4, 4, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM l_layer_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 7, HSV_RED}
+    {0, 1, HSV_RED},
+    {1, 1, 0, 0, 0},
+    {2, 1, HSV_RED},
+    {3, 1, 0, 0, 0},
+    {4, 4, HSV_RED}
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -61,7 +81,7 @@ void keyboard_post_init_user(void) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
+    rgblight_set_layer_state(0, true);
     return state;
 }
 
@@ -106,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
     LCTL(LSFT(KC_TAB)), LCTL(KC_TAB),   KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
     KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
-    KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
+    KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS
     ),
 
     [_VIA4] = LAYOUT(
