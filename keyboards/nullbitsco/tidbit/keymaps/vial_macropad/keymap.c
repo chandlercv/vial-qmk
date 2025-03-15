@@ -26,7 +26,7 @@ enum layers {
 
 #define MAX_LEN_LINE 6
 
-#include "oled_management.h"
+// #include "oled_management.h"
 
 const rgblight_segment_t PROGMEM l_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 7, 2, 158, 255}
@@ -66,7 +66,6 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    oled_on();
     rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
     rgblight_set_layer_state(1, layer_state_cmp(state, _VIA1));
     rgblight_set_layer_state(2, layer_state_cmp(state, _VIA2));
@@ -77,28 +76,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-                                                    LCTL(KC_X),    KC_F10,            LCTL(KC_N),
-    KC_UP,              KC_DOWN,        KC_F24,     LCTL(KC_W),    LCTL(LSFT(KC_T)),  LCTL(KC_S),
-    LCTL(LSFT(KC_TAB)), LCTL(KC_TAB),   LALT(KC_X), LCTL(KC_Z),    LCTL(KC_Y),        KC_NO,
-    ___,                ___,            ___,        KC_F2,         KC_F1,             LCTL(LSFT(KC_R)),
-    KC_F17,             KC_F18,         KC_F14,     LCTL(KC_E),    KC_F12,            LCTL(KC_C)
+                                                  C(KC_X),    G(KC_N),     C(KC_N),
+    KC_F17,            KC_F18,      KC_F19,       C(KC_W),    C(S(KC_T)),  C(KC_S),
+    C(S(KC_TAB)),      C(KC_TAB),   LALT(KC_X),   ___,        ___,         KC_NO,
+    C(S(KC_GRAVE)),    C(KC_GRAVE), LALT(KC_X),   KC_F2,      KC_F1,       C(S(KC_R)),
+    G(KC_RIGHT),       G(KC_LEFT),  G(KC_UP),     MEH(KC_S),  MEH(KC_Z),   C(KC_C)
     ),
 
 
     [_VIA1] = LAYOUT(
-                                  KC_TRNS,         KC_TRNS,   KC_TRNS,
+                               KC_TRNS,         KC_TRNS,   KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_TRNS,   KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_TRNS,   KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, LSFT(LCTL(KC_F)), LCTL(KC_H), KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_F),       KC_F12,     KC_TRNS
+    KC_TRNS, KC_TRNS, KC_TRNS, S(C(KC_F)),      C(KC_H),   KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_F),      KC_F12,   KC_TRNS
     ),
 
     [_VIA2] = LAYOUT(
-                                              KC_TRNS, KC_TRNS,   KC_TRNS,
+                                           KC_TRNS, KC_TRNS,   KC_TRNS,
     KC_TRNS,       KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS,
     LCTL(KC_PGUP), LCTL(KC_PGDN), KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS,
-    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_COLN,  KC_EQL,     KC_TRNS,
-    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_LPRN,  KC_RPRN,    KC_TRNS
+    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_COLN,  KC_EQL,   KC_TRNS,
+    KC_TRNS,       KC_TRNS,       KC_TRNS, KC_LPRN,  KC_RPRN,  KC_TRNS
     ),
 
     [_VIA3] = LAYOUT(
@@ -106,14 +105,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
     LCTL(LSFT(KC_TAB)), LCTL(KC_TAB),   KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
     KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
-    KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS,
+    KC_TRNS,            KC_TRNS,        KC_TRNS,    KC_TRNS, KC_TRNS,   KC_TRNS
     ),
 
     [_VIA4] = LAYOUT(
-                    ___, ___, ___,
-    ___, ___, ___, ___, ___, TO(4),
-    ___, ___, ___, ___, ___, ___,
+                     TO(0), ___,   ___,
+    ___, ___, ___,   ___,   ___,   ___,
+    ___, ___, TO(3), ___, ___,     ___,
     ___, ___, TO(0), TO(1), TO(2), ___,
-    ___, ___, ___,   TO(3), ___, ___
+    ___, ___, ___,   ___,   ___,   ___
     )
 };
